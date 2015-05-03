@@ -6,7 +6,10 @@ var angular = window.angular;
 
 var name = 'ng-alias';
 
-var pkg = module.exports = angular.module(name, []);
+var pkg = angular.module(name, []);
+if(typeof module != "undefined") {
+	module.exports = pkg;
+}
 
 pkg.name = name;
 
