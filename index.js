@@ -17,7 +17,7 @@ pkg.directive('ngAlias', [
   function() {
     return {
       link: function($scope, elem, attrs) {
-        var aliases = attrs.ngAlias.split(/[,;]+/);
+        var aliases = attrs.ngAlias.split(/[;]+/);
         angular.forEach(aliases, function(alias) {
           var idx = alias.indexOf('=');
           var path = alias.substring(0, idx).trim().split('.');
