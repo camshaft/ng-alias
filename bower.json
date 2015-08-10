@@ -1,0 +1,9 @@
+{
+  "name": "ng-alias",
+  "description": "An angular directive to alias a variable",
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "ignore": [],
+  "dependencies": {}
+}

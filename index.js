@@ -6,7 +6,10 @@ var angular = window.angular;
 
 var name = 'ng-alias';
 
-var pkg = module.exports = angular.module(name, []);
+var pkg = angular.module(name, []);
+if(typeof module != "undefined") {
+	module.exports = pkg;
+}
 
 pkg.name = name;
 
@@ -14,11 +17,12 @@ pkg.directive('ngAlias', [
   function() {
     return {
       link: function($scope, elem, attrs) {
-        var aliases = attrs.ngAlias.split(',');
+        var aliases = attrs.ngAlias.split(/[;]+/);
         angular.forEach(aliases, function(alias) {
-          var parts = alias.split('=');
-          var path = parts[0].trim().split('.');
-          $scope.$watch(parts[1].trim(), function(val) {
+          var idx = alias.indexOf('=');
+          var path = alias.substring(0, idx).trim().split('.');
+          var expr = alias.substring(idx + 1, alias.length).trim();
+          $scope.$watch(expr, function(val) {
             set(path, val, $scope, 0);
           });
         });
